@@ -95,14 +95,12 @@ export default function Home() {
   return (
     <div className="container">
 
-      {/* BUTTONS — har biri alohida .btns classga ega */}
       <div style={{ marginBottom: "20px" }}>
         <button className="btns" value="top_rated" onClick={() => handleBtnClick("top_rated")}>Top Rated</button>
         <button className="btns" value="popular" onClick={() => handleBtnClick("popular")}>Popular</button>
         <button className="btns" value="upcoming" onClick={() => handleBtnClick("upcoming")}>Upcoming</button>
       </div>
 
-      {/* SEARCH + FILTERS — .fl classiga o'ralgan */}
       <div className="fl" style={{ marginBottom: "20px" }}>
         <input id="search" placeholder="search" onChange={handleSearch} />
         <input id="min" type="number" placeholder="min year" onChange={handleFilter(setMin)} />
@@ -110,7 +108,6 @@ export default function Home() {
         <input id="score" type="number" placeholder="score" onChange={handleFilter(setScore)} />
       </div>
 
-      {/* MOVIES */}
       <div className="append">
         {loading ? (
           <h2 style={{ color: "orange" }}>Loading...</h2>
@@ -133,7 +130,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* PAGINATION */}
       <div className="pn">
         <button className="prev" disabled={page === 1} onClick={goPrev}>prev</button>
         <span className="title">{page}</span>
