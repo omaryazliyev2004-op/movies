@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import { LocalMovies, GitHub, LinkedIn, Code } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -23,20 +23,17 @@ export default function Footer() {
         px: { xs: 3, md: 8 },
       }}
     >
-      <Box
+      <Grid
+        container
+        spacing={4}
         sx={{
           maxWidth: 1280,
           mx: "auto",
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          alignItems: { xs: "center", sm: "flex-start" },
-          justifyContent: "space-between",
-          gap: 4,
         }}
       >
         {/* Brand */}
-        <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1, justifyContent: { xs: "center", sm: "flex-start" } }}>
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1.5 }}>
             <Box
               sx={{
                 width: 32, height: 32, borderRadius: "8px",
@@ -55,19 +52,19 @@ export default function Footer() {
               CineVerse
             </Typography>
           </Box>
-          <Typography color="text.secondary" fontSize="0.82rem" maxWidth={240}>
+          <Typography color="text.secondary" fontSize="0.82rem" maxWidth={280}>
             Discover amazing movies. Your ultimate cinema companion powered by TMDB.
           </Typography>
-        </Box>
+        </Grid>
 
         {/* Links */}
-        <Box>
-          <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={1.5} letterSpacing="0.08em" textTransform="uppercase">
+        <Grid item xs={6} sm={4} sx={{ textAlign: { sm: "center" } }}>
+          <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={2} letterSpacing="0.08em" textTransform="uppercase">
             Browse
           </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1.2, alignItems: { sm: "center" } }}>
             {footerLinks.map((l) => (
-              <Link key={l.label} to={l.to} style={{ textDecoration: "none" }}>
+              <Link key={l.label} to={l.to} style={{ textDecoration: "none", width: "fit-content" }}>
                 <Typography
                   fontSize="0.88rem"
                   color="text.secondary"
@@ -81,20 +78,20 @@ export default function Footer() {
               </Link>
             ))}
           </Box>
-        </Box>
+        </Grid>
 
         {/* Tech */}
-        <Box sx={{ textAlign: { xs: "center", sm: "right" } }}>
-          <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={1.5} letterSpacing="0.08em" textTransform="uppercase">
+        <Grid item xs={6} sm={4} sx={{ textAlign: { xs: "right", sm: "right" } }}>
+          <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={2} letterSpacing="0.08em" textTransform="uppercase">
             Built With
           </Typography>
           {["React 19", "Material UI v6", "TMDB API", "React Router v7"].map((t) => (
-            <Typography key={t} fontSize="0.82rem" color="text.disabled" sx={{ mb: 0.5 }}>
+            <Typography key={t} fontSize="0.82rem" color="text.disabled" sx={{ mb: 0.8 }}>
               {t}
             </Typography>
           ))}
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
 
       <Box
         sx={{

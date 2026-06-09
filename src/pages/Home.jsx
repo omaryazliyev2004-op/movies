@@ -489,7 +489,9 @@ export default function Home({ currentTab, onTabChange }) {
               onChange={(_, v) => setPage(v)}
               color="primary"
               shape="rounded"
-              size="large"
+              size="medium"
+              siblingCount={0}
+              boundaryCount={1}
               showFirstButton
               showLastButton
               sx={{
@@ -504,10 +506,13 @@ export default function Home({ currentTab, onTabChange }) {
                     boxShadow: "0 4px 14px rgba(108,143,255,0.4)",
                   },
                   "&:hover": {
-                    backgroundColor: alpha("#6c8fff", 0.12),
+                    backgroundColor: "rgba(108,143,255,0.12)",
                     color: "#fff",
                   },
                 },
+                "& .MuiPaginationItem-firstLast": {
+                  display: { xs: "none", sm: "inline-flex" }
+                }
               }}
             />
           </Box>
