@@ -435,10 +435,10 @@ export default function Home({ currentTab, onTabChange }) {
         </Box>
 
         {/* ── Movie Grid ── */}
-        <Grid container spacing={{ xs: 2, sm: 2.5 }}>
+        <Grid container spacing={{ xs: 1.5, sm: 2.5 }}>
           {loading
             ? skeletons.map((_, i) => (
-                <Grid item xs={6} sm={4} md={3} lg={2.4} key={i}>
+                <Grid item xs={6} sm={4} md={3} lg={2} key={i}>
                   <SkeletonCard />
                 </Grid>
               ))
@@ -473,7 +473,7 @@ export default function Home({ currentTab, onTabChange }) {
               </Grid>
             )
             : movies.map((movie, i) => (
-              <Grid item xs={6} sm={4} md={3} lg={2.4} key={movie.id}>
+              <Grid item xs={6} sm={4} md={3} lg={2} key={movie.id}>
                 <MovieCard movie={movie} index={i} />
               </Grid>
             ))

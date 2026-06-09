@@ -62,7 +62,7 @@ export default function MovieCard({ movie, index = 0 }) {
             image={imgSrc}
             alt={movie.title}
             sx={{
-              height: 300,
+              height: { xs: 240, sm: 280, md: 300 },
               objectFit: "cover",
               transition: "transform 0.5s cubic-bezier(0.4,0,0.2,1)",
               ".MuiCard-root:hover &": { transform: "scale(1.06)" },
@@ -71,7 +71,7 @@ export default function MovieCard({ movie, index = 0 }) {
         ) : (
           <Box
             sx={{
-              height: 300,
+              height: { xs: 240, sm: 280, md: 300 },
               background: "linear-gradient(135deg, #161929, #1e2240)",
               display: "flex",
               alignItems: "center",
