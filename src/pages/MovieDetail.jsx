@@ -12,6 +12,9 @@ import {
   Avatar,
   Stack,
   LinearProgress,
+  Modal,
+  Backdrop,
+  Fade,
 } from "@mui/material";
 import {
   ArrowBack,
@@ -756,62 +759,79 @@ export default function MovieDetail() {
       </Container>
 
       {/* ── Trailer Modal ── */}
-      {trailerOpen && trailerKey && (
-        <Box
-          onClick={() => setTrailerOpen(false)}
-          sx={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            backgroundColor: "rgba(0,0,0,0.92)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backdropFilter: "blur(4px)",
-          }}
-        >
+      <Modal
+        open={trailerOpen}
+        onClose={() => setTrailerOpen(false)}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+            sx: { backgroundColor: "rgba(0,0,0,0.92)", backdropFilter: "blur(4px)" },
+          },
+        }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          p: { xs: 2, md: 4 },
+        }}
+      >
+        <Fade in={trailerOpen}>
           <Box
-            onClick={(e) => e.stopPropagation()}
             sx={{
-              width: { xs: "95vw", md: "80vw" },
+              width: "100%",
               maxWidth: 1000,
-              aspectRatio: "16/9",
+              bgcolor: "#000",
               borderRadius: "16px",
               overflow: "hidden",
               boxShadow: "0 30px 80px rgba(0,0,0,0.9)",
               border: "1px solid rgba(255,255,255,0.1)",
               position: "relative",
+              outline: "none",
             }}
           >
-            <iframe
-              src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&rel=0`}
-              title="Movie Trailer"
-              style={{ width: "100%", height: "100%", border: "none" }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </Box>
+            {/* 16:9 Aspect Ratio Container */}
+            <Box sx={{ position: "relative", paddingTop: "56.25%", width: "100%" }}>
+              {trailerKey && (
+                <iframe
+                  src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&rel=0`}
+                  title="Movie Trailer"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
+            </Box>
 
-          <IconButton
-            onClick={() => setTrailerOpen(false)}
-            sx={{
-              position: "fixed",
-              top: 16,
-              right: 16,
-              zIndex: 10000,
-              backgroundColor: "rgba(0,0,0,0.7)",
-              border: "1px solid rgba(255,255,255,0.15)",
-              color: "#fff",
-              "&:hover": {
-                backgroundColor: "rgba(255,107,107,0.25)",
-                borderColor: "#ff6b6b",
-              },
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      )}
+            <IconButton
+              onClick={() => setTrailerOpen(false)}
+              sx={{
+                position: "absolute",
+                top: { xs: 8, md: -48 },
+                right: { xs: 8, md: 0 },
+                zIndex: 10,
+                backgroundColor: "rgba(0,0,0,0.6)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "rgba(255,107,107,0.8)",
+                  borderColor: "#ff6b6b",
+                },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Fade>
+      </Modal>
     </Box>
   );
 }

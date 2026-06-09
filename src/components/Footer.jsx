@@ -23,16 +23,18 @@ export default function Footer() {
         px: { xs: 3, md: 8 },
       }}
     >
-      <Grid
-        container
-        spacing={4}
+      <Box
         sx={{
           maxWidth: 1280,
           mx: "auto",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: "space-between",
+          gap: { xs: 4, md: 8 },
         }}
       >
         {/* Brand */}
-        <Grid item xs={12} sm={4}>
+        <Box sx={{ flex: { xs: "1 1 100%", md: "0 0 35%" } }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1.5 }}>
             <Box
               sx={{
@@ -52,46 +54,56 @@ export default function Footer() {
               CineVerse
             </Typography>
           </Box>
-          <Typography color="text.secondary" fontSize="0.82rem" maxWidth={280}>
+          <Typography color="text.secondary" fontSize="0.85rem" maxWidth={320} lineHeight={1.6}>
             Discover amazing movies. Your ultimate cinema companion powered by TMDB.
           </Typography>
-        </Grid>
+        </Box>
 
-        {/* Links */}
-        <Grid item xs={6} sm={4} sx={{ textAlign: { sm: "center" } }}>
-          <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={2} letterSpacing="0.08em" textTransform="uppercase">
-            Browse
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1.2, alignItems: { sm: "center" } }}>
-            {footerLinks.map((l) => (
-              <Link key={l.label} to={l.to} style={{ textDecoration: "none", width: "fit-content" }}>
-                <Typography
-                  fontSize="0.88rem"
-                  color="text.secondary"
-                  sx={{
-                    transition: "color 0.2s",
-                    "&:hover": { color: "#6c8fff" },
-                  }}
-                >
-                  {l.label}
-                </Typography>
-              </Link>
+        {/* Links & Tech Container (side-by-side on mobile, right-aligned on desktop) */}
+        <Box
+          sx={{
+            display: "flex",
+            flex: 1,
+            justifyContent: { xs: "space-between", md: "flex-end" },
+            gap: { xs: 2, sm: 6, md: 10 },
+          }}
+        >
+          {/* Links */}
+          <Box>
+            <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={2} letterSpacing="0.08em" textTransform="uppercase">
+              Browse
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1.2 }}>
+              {footerLinks.map((l) => (
+                <Link key={l.label} to={l.to} style={{ textDecoration: "none", width: "fit-content" }}>
+                  <Typography
+                    fontSize="0.88rem"
+                    color="text.secondary"
+                    sx={{
+                      transition: "color 0.2s",
+                      "&:hover": { color: "#6c8fff" },
+                    }}
+                  >
+                    {l.label}
+                  </Typography>
+                </Link>
+              ))}
+            </Box>
+          </Box>
+
+          {/* Tech */}
+          <Box sx={{ textAlign: { xs: "right", md: "left" } }}>
+            <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={2} letterSpacing="0.08em" textTransform="uppercase">
+              Built With
+            </Typography>
+            {["React 19", "Material UI v6", "TMDB API", "React Router v7"].map((t) => (
+              <Typography key={t} fontSize="0.85rem" color="text.disabled" sx={{ mb: 0.8 }}>
+                {t}
+              </Typography>
             ))}
           </Box>
-        </Grid>
-
-        {/* Tech */}
-        <Grid item xs={6} sm={4} sx={{ textAlign: { xs: "right", sm: "right" } }}>
-          <Typography fontWeight={700} fontSize="0.85rem" color="text.secondary" mb={2} letterSpacing="0.08em" textTransform="uppercase">
-            Built With
-          </Typography>
-          {["React 19", "Material UI v6", "TMDB API", "React Router v7"].map((t) => (
-            <Typography key={t} fontSize="0.82rem" color="text.disabled" sx={{ mb: 0.8 }}>
-              {t}
-            </Typography>
-          ))}
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       <Box
         sx={{
